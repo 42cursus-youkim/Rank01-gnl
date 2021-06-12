@@ -1,0 +1,6 @@
+*.swp
+a.out
+?
+main.c
+test.sh
+lib/
