@@ -6,7 +6,7 @@
 /*   By: youkim <youkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:27:09 by youkim            #+#    #+#             */
-/*   Updated: 2021/06/14 14:55:33 by youkim           ###   ########.fr       */
+/*   Updated: 2021/06/14 18:26:11 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,30 @@ int	where_newline(char *backup)
 
 int	pop_line(char **backup, char **line, int cut_where)
 {
-	int		poplen;
 	char	*temp;
 
 	(*backup)[cut_where] = '\0';
 	*line = ft_strdup(*backup);
-	poplen = ft_strlen(*backup + cut_where + 1);
-	temp = ft_strdup(*backup + cut_where + 1);
-	free(*backup);
-	if (!poplen)
+	if(!ft_strlen(*backup + cut_where + 1))
+	{
+		free(*backup);
 		*backup = 0;
+	}
 	else
+	{
+		temp = ft_strdup(*backup + cut_where + 1);
+		free(*backup);
 		*backup = temp;
+	}
 	return (1);
 }
 
 //#include <stdio.h>
-int	result(char **backup, char **line, int len)
+int	result(char **backup, char **line)
 {
 	int	cut_where;
 
 	//printf("BACKUP IS: %s", *backup);
-
-	if (len < 0)
-		return (-1);
 	if (*backup && (cut_where = where_newline(*backup)) >= 0)
 		return (pop_line(backup, line, cut_where));
 	else if (*backup)
@@ -66,7 +66,7 @@ int	get_next_line(int fd, char **line)
 	int			len;
 	int			cut_where;
 	char		buffer[BUFFER_SIZE + 1];
-	static char	*backup[MAX_FILES];
+	static char	*backup[OPEN_MAX];
 
 //	printf("MAX_FILES:\n%i\n", MAX_FILES);
 
@@ -85,7 +85,9 @@ int	get_next_line(int fd, char **line)
 			return (pop_line(&backup[fd], line, cut_where));
 		}
 	}
+	if (len < 0)
+		return (-1);
 	//printf("LEN WAS: %d", len);
 	//printf("FINAL\n");
-	return (result(&backup[fd], line, len));
+	return (result(&backup[fd], line));
 }

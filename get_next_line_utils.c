@@ -6,7 +6,7 @@
 /*   By: youkim <youkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:20:19 by youkim            #+#    #+#             */
-/*   Updated: 2021/06/12 17:28:03 by youkim           ###   ########.fr       */
+/*   Updated: 2021/06/14 18:09:46 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!str)
 		return (0);
 	ft_strlcpy(str, s1, lens1 + 1);
+	free((char *)s1);
 	ft_strlcat(str, s2, lens1 + lens2 + 1);
 	return (str);
 }
