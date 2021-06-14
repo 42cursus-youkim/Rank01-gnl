@@ -6,7 +6,7 @@
 /*   By: youkim <youkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:27:09 by youkim            #+#    #+#             */
-/*   Updated: 2021/06/12 18:21:09 by youkim           ###   ########.fr       */
+/*   Updated: 2021/06/14 14:55:33 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,29 @@ int	where_newline(char *backup)
 	return (-1);
 }
 
-int	pop_line(char **backup, char **line, int len)
+int	pop_line(char **backup, char **line, int cut_where)
 {
-	(*backup)[len] = '\0';
+	int		poplen;
+	char	*temp;
+
+	(*backup)[cut_where] = '\0';
 	*line = ft_strdup(*backup);
+	poplen = ft_strlen(*backup + cut_where + 1);
+	temp = ft_strdup(*backup + cut_where + 1);
 	free(*backup);
-	*backup = ft_strdup(*backup + len + 1);
+	if (!poplen)
+		*backup = 0;
+	else
+		*backup = temp;
 	return (1);
 }
 
+//#include <stdio.h>
 int	result(char **backup, char **line, int len)
 {
 	int	cut_where;
+
+	//printf("BACKUP IS: %s", *backup);
 
 	if (len < 0)
 		return (-1);
@@ -50,7 +61,6 @@ int	result(char **backup, char **line, int len)
 	return (0);
 }
 
-#include <stdio.h>
 int	get_next_line(int fd, char **line)
 {
 	int			len;
@@ -64,15 +74,18 @@ int	get_next_line(int fd, char **line)
 		return (-1);
 	while ((len = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
+		//printf("LEN: %d\n", len);
 		buffer[len] = '\0';
+		//printf("BACKUP[FD] BF:\n%s\n", backup[fd]);
 		backup[fd] = ft_strjoin(backup[fd], buffer);
-		//printf("BACKUP[FD]:\n%s\n", backup[fd]);
+		//printf("BACKUP[FD] AF:\n%s\n", backup[fd]);
 		if ((cut_where = where_newline(backup[fd])) >= 0)
 		{
-			printf("cut_where:%d\n", cut_where);
+		//	printf("RETURNING; cut_where:%d\n", cut_where);
 			return (pop_line(&backup[fd], line, cut_where));
 		}
 	}
-	printf("FINAL");
-	return (result(backup, line, len));
+	//printf("LEN WAS: %d", len);
+	//printf("FINAL\n");
+	return (result(&backup[fd], line, len));
 }
