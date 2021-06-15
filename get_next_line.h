@@ -6,7 +6,7 @@
 /*   By: youkim <youkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:28:01 by youkim            #+#    #+#             */
-/*   Updated: 2021/06/14 15:03:40 by youkim           ###   ########.fr       */
+/*   Updated: 2021/06/15 10:34:39 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdbool.h>
 
 int		get_next_line(int fd, char **line);
 
