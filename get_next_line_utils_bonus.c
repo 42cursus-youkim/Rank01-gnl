@@ -6,11 +6,11 @@
 /*   By: youkim <youkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:20:19 by youkim            #+#    #+#             */
-/*   Updated: 2021/06/14 18:09:46 by youkim           ###   ########.fr       */
+/*   Updated: 2021/06/15 14:33:43 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {

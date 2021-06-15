@@ -6,11 +6,11 @@
 /*   By: youkim <youkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:27:09 by youkim            #+#    #+#             */
-/*   Updated: 2021/06/14 18:37:04 by youkim           ###   ########.fr       */
+/*   Updated: 2021/06/15 14:33:29 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	where_newline(char *backup)
 {
