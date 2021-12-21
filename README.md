@@ -1,4 +1,19 @@
-# 이게모임?
+# get_next_line
 
-get_next_line 공부.
-보너스 파일을 원본 복붙만 하고 헤더 이름 바꾸는거 잊어버리면 안댐
+![](https://badge42.herokuapp.com/api/project/youkim/get_next_line)
+
+## diffences to newer subject
+
+### old (this)
+
+`int	get_next_line(int fd, char **line)`
+
+- reference to `char *line` is passed to store lines read
+- returns lengths read, -1 if error
+
+### new
+
+`char *get_next_line(int fd)`
+
+- returns read line
+- returns `NULL` if error
