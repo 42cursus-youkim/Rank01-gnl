@@ -7,8 +7,6 @@
 >  The aim of this project is to make you code a function that returns a line,
 read from a file descriptor.
 
-#### 📄 [subject pdf](https://cdn.intra.42.fr/pdf/pdf/35908/en.subject.pdf)
-
 ```python
 from pathlib import Path
 for line in Path('README.md').open():
